@@ -7,7 +7,7 @@ import { colorPalette } from "./constant";
 const App = () => {
   return (
     <div
-      className={`bg-[${colorPalette.Background}] h-screen `}
+      className={`bg-[${colorPalette.Background}] h-full  `}
     >
       <Header />
       <Body />

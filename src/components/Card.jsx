@@ -1,24 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import { colorPalette } from "../constant";
 import Button from "./Button";
 
-const Card = () => {
+const Card = ({
+  displayName,
+  subTitle,
+  image,
+  colorVariations,
+  price,
+  rating,
+  secondImage,
+}) => {
+  const [displayImg, setDisplayImg] = useState(image.src);
+  const [like, setLike] = useState(false);
   return (
     <div
-      className={`card w-80 h-96 bg-base-100 shadow-xl py-0 bg-[${colorPalette.Card}]`}
+      className={`w-72 h-[400px] rounded-xl bg-[#EBEEEF] mx-4 my-2  border border-gray-300`}
     >
-      <figure className="h-[80%] m-0">
+      <figure
+        className="h-[55%] bg-cover relative "
+        onMouseEnter={() => setDisplayImg(secondImage.src)}
+        onMouseLeave={() => setDisplayImg(image.src)}
+      >
+        <span className="absolute right-5 top-5">
+          {like ? (
+            <i
+              className="fa-solid fa-heart text-xl text-[#FF0000]"
+              onClick={() => setLike(!like)}
+            ></i>
+          ) : (
+            <i
+              className="fa-regular fa-heart text-xl"
+              onClick={() => setLike(!like)}
+            ></i>
+          )}
+        </span>
         <img
-        className="p-1 rounded"
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          className="w-full h-full  rounded-t-xl"
+          src={displayImg}
           alt="Shoes"
         />
       </figure>
-      <div className="card-body py-2">
-        <h2 className={`card-title text-[${colorPalette.Text.t1}]`}>Shoes!</h2>
-        <p className={` text-[${colorPalette.Text.t2}]`}>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <Button text={"Buy Now"} />
+      <div
+        className={`rounded-xl bg-[${colorPalette.Card}]  shadow-2xl h-[45%] py-2 px-2 border border-gray-300`}
+      >
+        <p
+          className={` font-medium text-sm  overflow-hidden text-[${colorPalette.Text.t4}]`}
+        >
+          <i className="fa-solid fa-indian-rupee-sign"></i> {price}
+        </p>
+        <h2
+          className={`my-2 font-bold text-xl h-8 overflow-hidden text-[${colorPalette.Text.t2}]`}
+        >
+          {displayName}
+        </h2>
+        <div className="flex items-center justify-between">
+          <div>
+            <p
+              className={`my-2 text-lg font-semibold h-6 text-[${colorPalette.Text.t3}]`}
+            >
+              {subTitle}
+            </p>
+            <p className={`mx-2 text-[${colorPalette.Text.t4}]`}>
+              <p className="mx-2">Colours : {colorVariations.length}</p>
+              <p className={`mx-2 text-[${colorPalette.Text.t4}]`}>
+                <i className="fa-solid fa-star text-[#FFD700]  drop-shadow-2xl"></i>{" "}
+                {rating ? rating : ""}
+              </p>
+            </p>
+          </div>
+          <div className="flex items-center justify-end px-4">
+            <Button text={"Buy Now"} />
+          </div>
         </div>
       </div>
     </div>

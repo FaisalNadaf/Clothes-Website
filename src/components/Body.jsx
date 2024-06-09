@@ -3,7 +3,7 @@ import CardCointainer from "./CardCointainer";
 
 const Body = () => {
   return (
-    <div>
+    <div className="">
       <CardCointainer />
     </div>
   );

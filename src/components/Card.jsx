@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { colorPalette } from "../constant";
 import Button from "./Button";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/Slices/cartSlice";
 
-const Card = ({
-  displayName,
-  subTitle,
-  image,
-  colorVariations,
-  price,
-  rating,
-  secondImage,
-}) => {
+const Card = (d) => {
+  const {
+    displayName,
+    subTitle,
+    image,
+    colorVariations,
+    price,
+    rating,
+    secondImage,
+  } = d;
+
+  const dispatch = useDispatch();
+  const handelAddItem = () => {
+    dispatch(addItem(d));
+  };
+
   const [displayImg, setDisplayImg] = useState(image.src);
   const [like, setLike] = useState(false);
   return (
@@ -69,8 +78,10 @@ const Card = ({
               </p>
             </p>
           </div>
-          <div className="flex items-center justify-end px-4">
-            <Button text={"Buy Now"} />
+          <div className="flex items-center justify-end px-4 text-black">
+            <button onClick={() => handelAddItem()}>
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
           </div>
         </div>
       </div>

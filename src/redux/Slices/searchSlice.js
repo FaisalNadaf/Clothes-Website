@@ -5,7 +5,7 @@ const searchSlice = createSlice({
   initialState: "",
   reducers: {
     searchqry: (state, action) => {
-      state = action.payload;
+     return action.payload;
       console.log(state);
     },
   },

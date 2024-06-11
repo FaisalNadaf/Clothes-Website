@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { colorPalette } from "../constant";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchqry } from "../redux/Slices/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  
+  const [searchTxt, setSearchTxt] = useState("");
+  const data = useSelector((store) => store.cart);
+
 
   return (
     <div
@@ -43,10 +45,13 @@ const Header = () => {
             className=" bg-[#D7BEA8]  text-[#744253] h-full px-2 rounded-l-md"
             placeholder="Search"
             onChange={(e) => {
-              dispatch(searchqry(e.target.value));
+              setSearchTxt(e.target.value);
             }}
           />
-          <button className="h-full px-3 ">
+          <button
+            className="h-full px-3 "
+            onClick={() => dispatch(searchqry(searchTxt))}
+          >
             <i className="fa-solid fa-magnifying-glass "></i>
           </button>
         </div>
@@ -69,6 +74,9 @@ const Header = () => {
         <div>
           <Link to="/cart">
             <i class="fa-solid fa-cart-shopping"></i>
+            <div className="badge  w-6 h-6 relative bottom-3 left-1   bg-[#B49286] font-bold text-[#744253]">
+              {data?.length}
+            </div>
           </Link>
         </div>
       </div>

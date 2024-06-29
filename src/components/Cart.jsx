@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../redux/Slices/cartSlice";
 import ShimmerUi from "./ShimmerUi";
 import { colorPalette } from "../constant";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
 
   const handelRemoveItem = (id) => {
@@ -13,18 +15,51 @@ const Cart = () => {
 
   const data = useSelector((store) => store.cart);
 
+  useEffect(() => {
+    const totalAmount = data.reduce((acc, d) => acc + d.price, 0);
+    setTotal(totalAmount);
+  }, [data]);
+
   return !data ? (
     <ShimmerUi />
   ) : (
-    <div className="flex flex-wrap items-center justify-center p-4">
-      {data.map((d) => (
-        <CartItem
-          key={d.productId}
-          item={d}
-          handelRemoveItem={handelRemoveItem}
-        />
-      ))}
-    </div>
+    <>
+      <div className="h-8 my-2 flex items-center justify-between">
+        {" "}
+        <Link to="/">
+          <i className="fa-solid fa-arrow-left text-lg font-bold mx-2 text-[#744253] px-2 "></i>
+        </Link>
+        <div className="dropdown dropdown-left">
+          <div
+            tabIndex={0}
+            role="button"
+            className="px-4 mx-2 rounded bg-[#744253] text-[#d7bea8] py-1"
+          >
+            total
+          </div>
+          <div
+            tabIndex={0}
+            className="            dropdown-content
+ menu z-[1] bg-[#744253] rounded "
+          >
+            <div className="flex items-center justify-center text-[#d7bea8] shadow-2xl">
+              {total}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-wrap items-center justify-center p-4">
+        {data.map((d) => {
+          return (
+            <CartItem
+              key={d.productId}
+              item={d}
+              handelRemoveItem={handelRemoveItem}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };
 
@@ -41,6 +76,7 @@ const CartItem = ({ item, handelRemoveItem }) => {
   } = item;
   const [like, setLike] = useState(false);
   const [displayImg, setDisplayImg] = useState(image?.src);
+  const [count, setCount] = useState(0);
 
   return (
     <div
@@ -98,7 +134,28 @@ const CartItem = ({ item, handelRemoveItem }) => {
               {rating || ""}
             </p>
           </div>
-          <div className="flex items-center justify-end px-4 text-black">
+          <div className="flex items-center w-[60%] justify-between px-4 text-black">
+            <div className="w-16 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  if (count > 0) {
+                    setCount(count - 1);
+                  }
+                }}
+                className="w-5 rounded bg-[#B49286] flex items-center justify-center h-full"
+              >
+                -
+              </button>
+              <span>{count}</span>
+              <button
+                onClick={() => {
+                  setCount(count + 1);
+                }}
+                className="w-5 rounded bg-[#B49286] flex items-center justify-center h-full"
+              >
+                +
+              </button>
+            </div>
             <button onClick={() => handelRemoveItem(productId)}>
               <i className="fa-solid fa-trash"></i>
             </button>

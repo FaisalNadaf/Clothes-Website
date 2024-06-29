@@ -10,7 +10,7 @@ import store from "./redux/store";
 
 const App = () => {
   return (
-    <div className={`bg-[${colorPalette.Background}] min-h-screen`}>
+    <div className={`bg-[${colorPalette.Background}] min-h-screen relative`}>
       <Provider store={store}>
         <BrowserRouter>
           <Header />
@@ -18,7 +18,10 @@ const App = () => {
             <Route path="/" element={<Body />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
-          <Footer />
+
+          <div className="mt-4 text-[#6c5850] text-sm w-full flex items-center justify-center absolute bottom-0">
+            <Footer />
+          </div>
         </BrowserRouter>
       </Provider>
     </div>

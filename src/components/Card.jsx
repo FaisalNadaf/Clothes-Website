@@ -46,6 +46,7 @@ const Card = (d) => {
         </span>
         <img
           className="w-full h-full  rounded-t-xl"
+          loading="lazy"
           src={displayImg}
           alt="Shoes"
         />

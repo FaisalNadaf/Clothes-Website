@@ -25,7 +25,6 @@ const CardCointainer = () => {
       d.displayName.toLowerCase().includes(search.toLowerCase())
     );
   };
-  console.log(searchFilteredData);
   useEffect(() => {
     setSearchFilteredData(filteredData(search, data));
   }, [search]);

@@ -48,11 +48,10 @@ const ShowBuyComponent = ({
 
 	const toggleLike = () =>
 		setProductState((prevState) => ({ ...prevState, like: !prevState.like }));
-
 	return (
 		<div className="fixed inset-0 z-20 flex items-center justify-center h-screen w-screen">
 			<div className="fixed inset-0 bg-black opacity-60"></div>
-			<div className="relative bg-white w-[60%] h-[70%] flex justify-around items-center rounded-lg shadow-lg">
+			<div className="relative bg-white w-full md:w-[80%] lg:w-[60%] h-[90%] md:h-[80%] lg:h-[70%] flex flex-col md:flex-row justify-around items-center rounded-lg shadow-lg">
 				<button
 					onClick={() => setShow(false)}
 					className="absolute top-4 right-4 text-black font-bold"
@@ -60,9 +59,9 @@ const ShowBuyComponent = ({
 					<i className="fa-solid fa-rectangle-xmark text-xl"></i>
 				</button>
 
-				<div className="w-full h-full flex items-center justify-center mx-4 my-2">
+				<div className="w-full h-full flex flex-col md:flex-row items-center justify-center mx-4 my-2">
 					<figure
-						className="h-[80%] w-[45%] bg-cover relative shadow-2xl rounded-l-xl"
+						className="h-[40%] md:h-[80%] w-[80%] md:w-[45%] bg-cover relative shadow-2xl rounded-t-xl md:rounded-l-xl"
 						onMouseEnter={() =>
 							setProductState((prevState) => ({
 								...prevState,
@@ -84,15 +83,15 @@ const ShowBuyComponent = ({
 								aria-label={like ? "Unlike" : "Like"}></i>
 						</span>
 						<img
-							className="w-full h-full rounded-l-xl"
+							className="w-full h-full rounded-t-xl md:rounded-l-xl"
 							loading="lazy"
 							src={displayImg}
 							alt={displayName}
 						/>
 					</figure>
 
-					<div className="rounded-r-xl bg-white shadow-2xl h-[80%] w-[45%] px-6 py-10">
-						<h2 className="my-4 font-bold text-3xl h-8 overflow-hidden text-gray-800">
+					<div className="rounded-b-xl md:rounded-r-xl bg-white shadow-2xl h-[60%] md:h-[80%] w-[80%] md:w-[45%] px-6 py-4 md:py-10">
+						<h2 className="my-4 font-bold text-2xl md:text-3xl h-8 overflow-hidden text-gray-800">
 							{displayName}
 						</h2>
 						<p className="font-bold text-lg overflow-hidden text-gray-500">
@@ -103,7 +102,7 @@ const ShowBuyComponent = ({
 							<span className="font-bold">{price}</span>
 						</p>
 						<div className="w-full">
-							<p className="my-2 text-xl font-semibold h-6 text-gray-700">
+							<p className="my-2 text-lg md:text-xl font-semibold h-6 text-gray-700">
 								{subTitle}
 							</p>
 							<p className="mx-2 text-lg text-gray-500">
@@ -111,7 +110,7 @@ const ShowBuyComponent = ({
 								{colorVariations.map((color, index) => {
 									return (
 										<span
-											key={index} // Prefer unique identifiers if available
+											key={index}
 											className={`h-4 w-4 rounded-full inline-block ml-1 bg-[${getRandomColor()}]`}
 											style={{
 												backgroundColor: `${getRandomColor()}`,

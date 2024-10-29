@@ -13,7 +13,7 @@ import store from "./redux/store";
 const App = () => {
 	return (
 		<div
-			className={`bg-gradient-to-r transition	ease-in-out	delay-75		 duration-1000  from-indigo-500 via-purple-500 to-gray-400 min-h-screen relative`}>
+			className={`bg-gradient-to-r transition	ease-in-out	delay-75 duration-1000  from-indigo-500 via-purple-500 to-gray-400 min-h-screen relative`}>
 			<Provider store={store}>
 				<BrowserRouter>
 					<Header />

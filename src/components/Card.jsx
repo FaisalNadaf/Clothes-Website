@@ -95,7 +95,7 @@ const Card = (props) => {
 					{/* Buttons */}
 					<div className="flex items-center w-[40%] justify-around text-black">
 						<button
-							className="px-4 py-1 rounded-lg font-bold bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500"
+							className="px-4 py-1 rounded-lg font-bold bg-gradient-to-r from-teal-400 to-blue-500 hover:from-green-600 hover:to-orange-500"
 							onClick={() => setShow(true)}>
 							Buy
 						</button>

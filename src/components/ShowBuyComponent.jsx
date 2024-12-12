@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../redux/Slices/cartSlice";
 import PropTypes from "prop-types";
 import { getRandomColor } from "../helper/getRandomHexColor";
+import { toast } from "react-toastify";
 
 const ShowBuyComponent = ({
 	setShow,
@@ -19,6 +20,7 @@ const ShowBuyComponent = ({
 	const dispatch = useDispatch();
 
 	const handleAddItem = () => {
+		notifyAddToCart();
 		dispatch(
 			addItem({
 				displayName,
@@ -31,6 +33,7 @@ const ShowBuyComponent = ({
 			}),
 		);
 	};
+	const notifyAddToCart = () => toast("Item Added To Cart");
 
 	useEffect(() => {
 		document.body.classList.add("overflow-hidden");
@@ -40,8 +43,7 @@ const ShowBuyComponent = ({
 	}, []);
 
 	const [productState, setProductState] = useState({
-		displayImg: image.src || "path/to/default/image.jpg", // Default image path
-		like: false,
+		displayImg: image.src || "",
 	});
 
 	const { displayImg, like } = productState;
@@ -83,7 +85,7 @@ const ShowBuyComponent = ({
 								aria-label={like ? "Unlike" : "Like"}></i>
 						</span>
 						<img
-							className="w-full h-full rounded-t-xl md:rounded-l-xl"
+							className="w-full object-cover h-full rounded-t-xl md:rounded-l-xl"
 							loading="lazy"
 							src={displayImg}
 							alt={displayName}

@@ -1,0 +1,87 @@
+/* Card container with smooth hover transition */
+.card {
+	transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+	border-radius: 1rem;
+  }
+  
+  .card:hover {
+	transform: translateY(-12px); /* Lift card when hovered */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+	background-color: #f7f7f7; /* Subtle background color change */
+  }
+  
+  /* Image hover effects */
+  .card img {
+	transition: transform 0.4s ease-in-out, filter 0.3s ease-in-out;
+  }
+  
+  .card:hover img {
+	transform: scale(1.1); /* Zoom-in image */
+	filter: brightness(85%); 
+	border-radius: 20px;/* Darken image on hover */
+  }
+  
+  /* Animation for the heart icon */
+  .heart-icon {
+	transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .card:hover .heart-icon {
+	transform: scale(1.2); /* Grow the heart icon */
+	color: #FF6347; /* Change heart color to red */
+  }
+  
+  /* Button hover effects with smooth color transition */
+  .card .btn-buy {
+	transition: transform 0.3s ease, background-color 0.4s ease;
+  }
+  
+  .card:hover .btn-buy {
+	transform: translateY(-5px); /* Lift button on hover */
+	background-color: #FF6347; /* Change button color */
+	box-shadow: 0 4px 12px rgba(255, 99, 71, 0.5); /* Button shadow */
+  }
+  
+  /* Add-to-cart button icon hover */
+  .card .btn-add-to-cart {
+	transition: color 0.3s ease;
+  }
+  
+  .card:hover .btn-add-to-cart {
+	color: #FF6347; /* Change color of the cart icon */
+  }
+  
+  /* Text fade-in effect for product details */
+  .card .product-details p,
+  .card .product-details h2 {
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	opacity: 0; /* Make text initially invisible */
+	transform: translateY(20px); /* Shift text down */
+  }
+  
+  .card:hover .product-details p,
+  .card:hover .product-details h2 {
+	opacity: 1;
+	transform: translateY(0); /* Bring text back to normal position */
+  }
+  
+  /* Subtle pop effect for product name */
+  .card:hover h2 {
+	transform: scale(1.05); /* Slightly enlarge the title */
+  }
+  
+  /* Smooth transitions for the entire card content */
+  .card .content {
+	transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card:hover .content {
+	opacity: 1;
+	transform: translateY(0);
+  }
+  
+  .card .content {
+	opacity: 0;
+	transform: translateY(20px);
+  }
+  

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../redux/Slices/cartSlice";
 import ShowBuyComponent from "./ShowBuyComponent";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 const Card = (props) => {
 	const {
@@ -21,15 +22,20 @@ const Card = (props) => {
 
 	const dispatch = useDispatch();
 	const handleAddItem = () => {
-		dispatch(addItem(props)); // Dispatching the entire props object
+		notifyAddToCart();
+		dispatch(addItem(props));
 	};
 
-	const [show, setShow] = useState(false); // Control modal visibility
-	const [displayImg, setDisplayImg] = useState(image.src || ""); // Add default value
+	const [show, setShow] = useState(false);
+	const [displayImg, setDisplayImg] = useState(image.src || "");
 	const [like, setLike] = useState(false);
+	const notifyLike = () => toast("Liked 💕");
+	const notifyAddToCart = () => toast("Item Added To Cart");
+
+	const notifyDislike = () => toast("dislike 🥲");
 
 	return (
-		<div className="w-72 h-[400px] rounded-xl  hover:shadow-black hover:shadow-lg bg-[#EBEEEF] mx-4 my-2 ">
+		<div className="w-72 h-[600px] rounded-xl  hover:shadow-black hover:shadow-lg bg-[#EBEEEF] mx-4 my-2 ">
 			{show && (
 				<ShowBuyComponent
 					setShow={setShow}
@@ -45,23 +51,27 @@ const Card = (props) => {
 			{/* Pass individual props to modal */}
 
 			<figure
-				className="h-[55%] bg-cover relative"
-				onMouseEnter={() => setDisplayImg(secondImage.src || "")} // Add default value
+				className="h-[55%] bg-contain relative overflow-hidden"
+				onMouseEnter={() => setDisplayImg(secondImage.src || "")}
 				onMouseLeave={() => setDisplayImg(image.src || "")}>
 				<span className="absolute right-5 top-5">
 					{/* Heart icon for like/unlike */}
 					{like ? (
 						<i
 							className="fa-solid fa-heart text-xl text-[#FF0000]"
-							onClick={() => setLike(!like)}></i>
+							onClick={() => {
+								notifyDislike(), setLike(!like);
+							}}></i>
 					) : (
 						<i
 							className="fa-regular fa-heart text-xl"
-							onClick={() => setLike(!like)}></i>
+							onClick={() => {
+								notifyLike(), setLike(!like);
+							}}></i>
 					)}
 				</span>
 				<img
-					className="w-full h-full rounded-t-xl"
+					className="w-full h-full rounded-t-xl " 
 					loading="lazy"
 					src={displayImg}
 					alt={displayName}
@@ -95,7 +105,7 @@ const Card = (props) => {
 					{/* Buttons */}
 					<div className="flex items-center w-[40%] justify-around text-black">
 						<button
-							className="px-4 py-1 rounded-lg font-bold bg-gradient-to-r from-teal-400 to-blue-500 hover:from-green-600 hover:to-orange-500"
+							className="px-4 py-1 rounded-lg font-bold bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500"
 							onClick={() => setShow(true)}>
 							Buy
 						</button>

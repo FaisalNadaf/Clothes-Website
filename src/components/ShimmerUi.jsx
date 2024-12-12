@@ -9,7 +9,7 @@ const ShimmerUi = () => {
           return (
             <div
               key={index}
-              className="animate-pulse w-72 h-[400px] rounded-xl bg-[#eeeeee] mx-4 my-2"
+              className="animate-pulse w-72 h-[600px] rounded-xl bg-[#eeeeee] mx-4 my-2"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <figure className="h-[55%] bg-cover relative"></figure>

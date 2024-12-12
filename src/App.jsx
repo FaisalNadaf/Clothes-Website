@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 	return (
@@ -16,6 +18,12 @@ const App = () => {
 			className={`bg-gradient-to-r transition	ease-in-out	delay-75 duration-1000  from-indigo-500 via-purple-500 to-gray-400 min-h-screen relative`}>
 			<Provider store={store}>
 				<BrowserRouter>
+					<ToastContainer
+						position="bottom-right"
+						autoClose={3000}
+						hideProgressBar={false}
+						theme="dark"
+					/>
 					<Header />
 					<Routes>
 						<Route

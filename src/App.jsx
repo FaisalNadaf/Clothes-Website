@@ -20,7 +20,7 @@ const App = () => {
           </Routes>
 
           <div className="mt-4 text-[#6c5850] text-sm w-full flex items-center justify-center absolute bottom-0">
-            <Footer />
+            <Footer />k
           </div>
         </BrowserRouter>
       </Provider>
